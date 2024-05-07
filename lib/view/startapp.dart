@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/view/loginpage.dart';
+import 'package:food_truck/view/login_page.dart';
+import 'package:food_truck/controller/page_routes.dart';
 
 class StartApp extends StatelessWidget {
   const StartApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(), // 바텀 네비게이션을 홈으로 설정
+      title: "FFOODD",
+      theme: ThemeData(canvasColor: Colors.black),
+      home: LoginPage(),
+      onGenerateRoute: (settings) => Routes.generateRoute(settings, context),
     );
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck/model/img_asset.dart';
-import 'package:food_truck/view/mainpage.dart';
+import 'package:food_truck/view/home_page.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   // 카카오톡 로그인 기능 추가
                   Navigator.of(context, rootNavigator: true).pushReplacement(
-                    MaterialPageRoute(builder: (context) => MainPage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 child: Text('카카오톡 로그인',
