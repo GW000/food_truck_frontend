@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/controller/img_asset.dart';
+import 'package:food_truck/model/img_asset.dart';
 
-class Mypage extends StatelessWidget {
-  const Mypage({super.key});
+class MyPage extends StatelessWidget {
+  const MyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class Mypage extends StatelessWidget {
       body: Center(
         child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 120),
-            child: Image.asset(AppAsset.imgtest, width: 50)),
+            child: Image.asset(IMGAsset.imgtest, width: 50)),
       ),
     );
   }
