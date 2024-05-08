@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:food_truck/controller/profile_controller.dart';
 
-class ProfileSettingsPage extends StatelessWidget {
+class ProfilesettingView extends GetView<ProfileController> {
+  const ProfilesettingView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('회원정보 수정'),
+        title: const Text('ProfileView'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

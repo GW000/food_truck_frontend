@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:food_truck/controller/profile_controller.dart';
 
-class MyReviewPage extends StatelessWidget {
+class Review extends GetView<ProfileController> {
+  const Review({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('내 리뷰'),
+        title: const Text('ProfileView'),
+        centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: 3, // 내가 작성한 리뷰 개수

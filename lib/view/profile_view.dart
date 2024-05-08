@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/model/img_asset.dart';
-import 'package:food_truck/widget/menu_bottom.dart';
+import 'package:get/get.dart';
 
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
+import 'package:food_truck/controller/profile_controller.dart';
+
+class ProfileView extends GetView<ProfileController> {
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('마이페이지'),
+        title: const Text('ProfileView'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,7 +22,8 @@ class MyPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage(IMGAsset.imgtest), //테스트 이미지 삽입
+                  backgroundImage:
+                      AssetImage('assets/profile_image.jpg'), //테스트 이미지 삽입
                 ),
                 SizedBox(width: 16.0),
                 Column(
@@ -50,7 +53,7 @@ class MyPage extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () {
                     // 내 리뷰로 이동하는 기능 추가
-                    Navigator.of(context).pushNamed('/mypage/myreview_page');
+                    Navigator.of(context).pushNamed('/review');
                   },
                   icon: Icon(Icons.rate_review),
                   label: Text('내 리뷰'),
@@ -103,7 +106,7 @@ class MyPage extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).pop(); // 팝업 창 닫기
                             Navigator.of(context)
-                                .pushNamed('/mypage/profilesetting');
+                                .pushNamed('/profile/profilesetting');
                           },
                         ),
                       ],
@@ -218,7 +221,6 @@ class MyPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: MenuBottom(),
     );
   }
 }
