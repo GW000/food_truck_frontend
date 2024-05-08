@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/widget/menu_bottom.dart';
 
-class WishListPage extends StatelessWidget {
+class WishlistView extends StatelessWidget {
+  const WishlistView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('찜 목록'),
+        title: const Text('WishlistView'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,7 +36,6 @@ class WishListPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: MenuBottom(),
     );
   }
 

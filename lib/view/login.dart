@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/model/img_asset.dart';
-import 'package:food_truck/view/home_page.dart';
+import 'base_view.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class Login extends StatelessWidget {
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: 20.0), // 텍스트와 이미지 사이 간격 조절
               Image.asset(
-                IMGAsset.imgtest, // 푸드트럭 이미지 파일 경로
+                'assets/images/test1.png', // 푸드트럭 이미지 파일 경로
                 width: 200.0,
                 height: 200.0,
               ),
@@ -41,9 +40,7 @@ class LoginPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // 카카오톡 로그인 기능 추가
-                  Navigator.of(context, rootNavigator: true).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  Navigator.of(context).pushReplacementNamed('/base');
                 },
                 child: Text('카카오톡 로그인',
                     style:

@@ -1,5 +1,7 @@
 # food_truck_frontend
 ### $ flutter pub get
+### $ flutter pub add get
+- BottomNav의 작동 오류로 인한 상태 업데이트 해결방법
 
 ### $ flutter pub add mvc_pattern
 - MVC 디자인 패턴

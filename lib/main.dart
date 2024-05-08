@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/view/startapp.dart';
 
-void main() => runApp(const StartApp());
+import 'package:get/get.dart';
+
+import 'controller/app_pages.dart';
+
+void main() {
+  runApp(
+    GetMaterialApp(
+      title: "FFOODD",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
+}
