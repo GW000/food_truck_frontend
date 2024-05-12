@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'base_view.dart';
+import 'package:flutter_svg/svg.dart';
+import '../controller/login_controller.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -11,8 +12,9 @@ class Login extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFFFF7F9E), // 조금 더 진한 파스텔 핑크색
-              Color(0xFFFFC66C), // 조금 더 진한 파스텔 주황색
+              Colors.grey,
+              Colors.white, // 조금 더 진한 파스텔 핑크색
+              Colors.grey, // 조금 더 진한 파스텔 주황색
             ],
             begin: Alignment.topCenter, // 그라데이션 시작 위치 설정
             end: Alignment.bottomCenter, // 그라데이션 종료 위치 설정
@@ -23,62 +25,28 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '푸드트럭',
+                'FFOODD   ',
                 style: TextStyle(
                   fontSize: 32.0,
+                  fontFamily: 'Pretendard',
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // 텍스트 색상 검은색으로 변경
+                  color: const Color.fromARGB(
+                      255, 106, 118, 124), // 텍스트 색상 검은색으로 변경
                 ),
               ),
-              SizedBox(height: 20.0), // 텍스트와 이미지 사이 간격 조절
               Image.asset(
-                'assets/images/test1.png', // 푸드트럭 이미지 파일 경로
+                'assets/images/foodtruck_icon.png', // 이미지 출처 : <a href="https://www.flaticon.com/kr/free-icons/-" title="- 아이콘">- 아이콘 제작자: iconixar - Flaticon</a>
                 width: 200.0,
                 height: 200.0,
               ),
-              SizedBox(height: 40.0), // 이미지와 로그인 버튼 사이 간격 조절
-              ElevatedButton(
+              SizedBox(height: 40.0),
+              IconButton(
                 onPressed: () {
-                  // 카카오톡 로그인 기능 추가
-                  Navigator.of(context).pushReplacementNamed('/base');
+                  LoginController().goFirstLogin();
                 },
-                child: Text('카카오톡 로그인',
-                    style:
-                        TextStyle(color: Colors.black)), // 버튼 텍스트 색상 검은색으로 변경
-              ),
-              SizedBox(height: 20.0), // 로그인 버튼과 텍스트 사이 간격 조절
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      // 이메일로 로그인 기능 추가
-                    },
-                    child: Text(
-                      '이메일로 로그인',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black, // 텍스트 색상 검은색으로 변경
-                      ),
-                    ),
-                  ),
-                  Text(
-                    ' | ',
-                    style: TextStyle(color: Colors.black), // 구분자 색상 검은색으로 변경
-                  ),
-                  InkWell(
-                    onTap: () {
-                      // 회원가입 화면으로 이동하는 기능 추가
-                    },
-                    child: Text(
-                      '이메일로 회원가입',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black, // 텍스트 색상 검은색으로 변경
-                      ),
-                    ),
-                  ),
-                ],
+                icon: SvgPicture.asset(
+                  'assets/icons/android_light_rd_ctn.svg',
+                ),
               ),
             ],
           ),

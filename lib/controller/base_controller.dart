@@ -7,6 +7,8 @@ import 'package:food_truck/view/home_view.dart';
 
 class BaseController extends GetxController {
   RxInt selectedIndex = 0.obs;
+  double screenHeight = 0;
+  double screenWidth = 0;
   late List<Widget> widgetOptions;
 
   BaseController() {
@@ -20,5 +22,10 @@ class BaseController extends GetxController {
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
+  }
+
+  void setScreen(Size size) {
+    screenHeight = size.height;
+    screenWidth = size.width;
   }
 }

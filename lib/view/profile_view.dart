@@ -98,7 +98,7 @@ class ProfileView extends GetView<ProfileController> {
                         TextButton(
                           child: Text('아니오'),
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            Get.back();
                           },
                         ),
                         TextButton(

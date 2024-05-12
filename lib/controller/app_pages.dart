@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:food_truck/view/profilesetting_view.dart';
 import 'package:food_truck/view/review_view.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,8 @@ import '../view/profile_view.dart';
 
 import 'setting_controller.dart';
 import '../view/setting_view.dart';
+
+import '../view/first_login.dart';
 
 import 'profilesetting_controller.dart';
 import 'Review_controller.dart';
@@ -108,9 +111,17 @@ class LoginBinding extends Bindings {
   }
 }
 
+class FirstLoginBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<LoginController>(
+      () => LoginController(),
+    );
+  }
+}
+
 class AppPages {
   AppPages._();
-
   static const INITIAL = Routes.LOGIN;
 
   static final routes = [
@@ -158,6 +169,11 @@ class AppPages {
       name: _Paths.REVIEW,
       page: () => const Review(),
       binding: ReviewBinding(),
+    ),
+    GetPage(
+      name: _Paths.FIRSTLOGIN,
+      page: () => const FirstLogin(),
+      binding: FirstLoginBinding(),
     ),
   ];
 }

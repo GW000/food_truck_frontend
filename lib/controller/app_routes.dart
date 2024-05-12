@@ -12,6 +12,7 @@ abstract class Routes {
   static const SETTING = _Paths.SETTING;
   static const PROFILESETTING = _Paths.PROFILESETTING;
   static const REVIEW = _Paths.REVIEW;
+  static const FIRSTLOGIN = _Paths.FIRSTLOGIN;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const PROFILESETTING = '/profile/profilesetting';
   static const HOME = '/home';
   static const REVIEW = '/review';
+  static const FIRSTLOGIN = '/firstlogin';
 }

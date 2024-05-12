@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.10+1
   get: ^4.6.6
   mvc_pattern: ^8.12.0
 
@@ -18,8 +19,14 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 
-
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/icons/
+
+
+fonts:
+  - family: GamjaFlower
+    fonts:
+      - asset: assets/fonts/GamjaFlower.ttf

@@ -1,7 +1,8 @@
-import 'package:get/get.dart';
-import 'package:food_truck/controller/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:food_truck/view/setting_view.dart';
+import 'package:get/get.dart';
+import '../controller/app_pages.dart';
+
+import '../view/setting_view.dart';
 import '../view/profile_view.dart';
 import '../view/profilesetting_view.dart';
 import '../view/review_view.dart';
