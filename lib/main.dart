@@ -12,6 +12,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "FFOODD",
+      debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

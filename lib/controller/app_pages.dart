@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck/view/profilesetting_view.dart';
 import 'package:food_truck/view/review_view.dart';
+import 'package:food_truck/view/search_view.dart';
 import 'package:get/get.dart';
 
 import 'base_controller.dart';
@@ -12,8 +13,8 @@ import '../view/home_view.dart';
 import 'wishlist_controller.dart';
 import '../view/wishlist_view.dart';
 
-import 'foodmenu_controller.dart';
-import '../view/foodmenu_view.dart';
+import 'foodtruck_controller.dart';
+import '../view/foodtruck_view.dart';
 
 import 'profile_controller.dart';
 import '../view/profile_view.dart';
@@ -23,11 +24,17 @@ import '../view/setting_view.dart';
 
 import '../view/first_login.dart';
 
+import 'foodtrucksetting_controller.dart';
+import '../view/foodtrucksetting_view.dart';
+
+import '../view/foodtruckdetail_view.dart';
+import 'foodtruckdetail_controller.dart';
+
 import 'profilesetting_controller.dart';
 import 'Review_controller.dart';
 import 'login_controller.dart';
 import '../view/login.dart';
-
+import '../controller/search_controller.dart';
 part 'app_routes.dart';
 
 class BaseBinding extends Bindings {
@@ -57,11 +64,11 @@ class WishlistBinding extends Bindings {
   }
 }
 
-class FoodmenuBinding extends Bindings {
+class FoodtruckBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<FoodmenuController>(
-      () => FoodmenuController(),
+    Get.lazyPut<FoodtruckController>(
+      () => FoodtruckController(),
     );
   }
 }
@@ -120,6 +127,33 @@ class FirstLoginBinding extends Bindings {
   }
 }
 
+class SearchBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<Search_Controller>(
+      () => Search_Controller(),
+    );
+  }
+}
+
+class FoodtrucksettingBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<FoodtrucksettingController>(
+      () => FoodtrucksettingController(),
+    );
+  }
+}
+
+class FoodtruckdetailBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<FoodtruckdetailController>(
+      () => FoodtruckdetailController(),
+    );
+  }
+}
+
 class AppPages {
   AppPages._();
   static const INITIAL = Routes.LOGIN;
@@ -146,9 +180,9 @@ class AppPages {
       binding: WishlistBinding(),
     ),
     GetPage(
-      name: _Paths.FOODMENU,
-      page: () => const FoodmenuView(),
-      binding: FoodmenuBinding(),
+      name: _Paths.FOODTRUCK,
+      page: () => const FoodtruckView(),
+      binding: FoodtruckBinding(),
     ),
     GetPage(
       name: _Paths.PROFILE,
@@ -174,6 +208,21 @@ class AppPages {
       name: _Paths.FIRSTLOGIN,
       page: () => const FirstLogin(),
       binding: FirstLoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.FOODTRUCKSETTING,
+      page: () => const FoodtrucksettingView(),
+      binding: FoodtrucksettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.FOODTRUCKDETAIL,
+      page: () => const FoodtruckdetailView(),
+      binding: FoodtruckdetailBinding(),
     ),
   ];
 }

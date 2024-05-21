@@ -53,7 +53,7 @@ class ProfileView extends GetView<ProfileController> {
                 ElevatedButton.icon(
                   onPressed: () {
                     // 내 리뷰로 이동하는 기능 추가
-                    Navigator.of(context).pushNamed('/review');
+                    controller.goToReviewPage();
                   },
                   icon: Icon(Icons.rate_review),
                   label: Text('내 리뷰'),
@@ -105,8 +105,7 @@ class ProfileView extends GetView<ProfileController> {
                           child: Text('예'),
                           onPressed: () {
                             Navigator.of(context).pop(); // 팝업 창 닫기
-                            Navigator.of(context)
-                                .pushNamed('/profile/profilesetting');
+                            controller.goToProfilesettingPage();
                           },
                         ),
                       ],
@@ -161,15 +160,13 @@ class ProfileView extends GetView<ProfileController> {
                           child: Text('예'),
                           onPressed: () {
                             Navigator.of(context).pop(); // 팝업 창 닫기
-                            Navigator.of(context)
-                                .pushNamed('/mypage/profilesetting');
+                            //푸드트럭 수정 페이지 이동 필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
                           },
                         ),
                       ],
                     );
                   },
                 );
-                // 푸드트럭 등록 페이지로 이동하는 기능 추가
               },
               child: Row(
                 children: [
@@ -187,7 +184,48 @@ class ProfileView extends GetView<ProfileController> {
             SizedBox(height: 8.0),
             GestureDetector(
               onTap: () {
-                // 나의 푸드트럭 페이지로 이동하는 기능 추가
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('경고'),
+                      content: Text('푸드트럭 정보 수정 페이지로 이동하시겠습니까?'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text('아니오'),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        TextButton(
+                          child: Text('예'),
+                          onPressed: () {
+                            Navigator.of(context).pop(); // 팝업 창 닫기
+                            controller.goToFoodtrucksettingPage();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Row(
+                children: [
+                  Text(
+                    '푸드트럭 정보 수정',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(Icons.arrow_forward),
+                ],
+              ),
+            ),
+            SizedBox(height: 8.0),
+            GestureDetector(
+              onTap: () {
+                // 나의 푸드트럭 페이지로 이동하는 기능 추가!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
               },
               child: Row(
                 children: [
