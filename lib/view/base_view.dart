@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controller/base_controller.dart';
 
 class BaseView extends GetView<BaseController> {
@@ -9,12 +8,11 @@ class BaseView extends GetView<BaseController> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    controller.setScreen(size);
     return Scaffold(
         body: Obx(() =>
             controller.widgetOptions.elementAt(controller.selectedIndex.value)),
         bottomNavigationBar: SizedBox(
-          height: controller.screenHeight * 0.1,
+          height: size.height * 0.1,
           child: Obx(() => BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 items: const <BottomNavigationBarItem>[

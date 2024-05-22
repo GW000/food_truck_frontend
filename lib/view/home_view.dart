@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/controller/base_controller.dart';
+import 'search_view.dart';
 import 'package:get/get.dart';
 import 'package:food_truck/controller/home_controller.dart';
+import '../controller/search_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = Get.find<BaseController>().screenHeight;
-    double screenWidth = Get.find<BaseController>().screenWidth;
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('HomeView'),
@@ -25,17 +25,22 @@ class HomeView extends GetView<HomeController> {
                 highlightColor: Colors.black12,
                 // Container와 동일한 Radius 설정
                 borderRadius: BorderRadius.circular(8.0),
-                onTap: () async {
-                  controller.goSearch();
+                onTap: () {
+                  Get.lazyPut<Search_Controller>(
+                    () => Search_Controller(),
+                  );
+                  Get.dialog(
+                    Theme(
+                      data: Theme.of(context),
+                      child: AlertDialog(
+                        content: SearchView(),
+                      ),
+                    ),
+                  );
                 },
-                onLongPress: () {
-                  // Get.to(() => const SearchFocus(),
-                  //     transition: Transition.fadeIn,
-                  //     binding: SearchFocusBinding(),
-                  //     id: 1);
-                },
-                // TextField인 척하는 컨테이너
+
                 child: Container(
+                  width: size.width * 0.7,
                   padding: const EdgeInsets.all(8.0),
                   height: 40,
                   decoration: BoxDecoration(
@@ -62,11 +67,11 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.005,
+                height: size.height * 0.005,
               ),
               Container(
-                width: screenWidth * 0.9,
-                height: screenHeight * 0.7,
+                width: size.width * 0.9,
+                height: size.height * 0.7,
                 color: Colors.blue,
               ),
             ],

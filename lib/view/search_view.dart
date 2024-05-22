@@ -6,15 +6,112 @@ class SearchView extends GetView<Search_Controller> {
   const SearchView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SearchView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: controller.goBack,
-          child: Text("Go back"),
+    final search = TextEditingController(text: '');
+    final Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: size.width * 0.8, //동적 크기조정필요
+        child: Obx(
+          () => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: search,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(
+                        hintText: '주소 입력',
+                      ),
+                      onSubmitted: (String value) {
+                        controller.searchAddress(search.text);
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white70,
+                      foregroundColor: Colors.black,
+                      shadowColor: Colors.black,
+                    ),
+                    onPressed: () {
+                      //print(search.text);
+                      controller.searchAddress(search.text);
+                    },
+                    child:
+                        const Text("검색", style: TextStyle(color: Colors.black)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              if (controller.address.length >= 100) ...[
+                Text('검색 결과가 너무 많습니다. 다시 입력해주세요. \n예) 필문대로 287번길',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                        color: Colors.redAccent)),
+                const SizedBox(height: 16),
+              ],
+              // if (controller.address.isEmpty) ...[
+              //   Text(
+              //     '현재 입력값이 없어요.',
+              //
+              //   ),
+              //   const SizedBox(height: 16),
+              // ],
+              if (controller.address.isNotEmpty)
+                ...controller.address
+                    .map(
+                      (e) => InkWell(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(e.roadAddr.trim(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.black)),
+                            Text(
+                              e.jibunAddr.trim(),
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.black),
+                            ),
+                            Text(
+                              e.engAddr.trim(),
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.black),
+                            ),
+                            Text(
+                              '[선택]',
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.lightBlue),
+                            )
+                          ],
+                        ),
+                        onTap: () {
+                          controller.result.value = e.roadAddrPart1;
+                          Get.back();
+                          search.dispose();
+                        },
+                      ),
+                    )
+                    .toList()
+                    .fold<List<Widget>>(
+                  [],
+                  (previousValue, element) => previousValue
+                    ..add(element)
+                    ..add(
+                      const Divider(
+                        height: 24,
+                      ),
+                    ),
+                )..removeLast(),
+            ],
+          ),
         ),
       ),
     );

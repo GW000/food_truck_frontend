@@ -5,14 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'app_pages.dart';
 
-class HomeController extends GetxController {
-  void goSearch() async {
-    //value의 값이 검색 필드 값
-    final value = await Get.toNamed(Routes.SEARCH, id: homeID);
-    print(value);
-    Get.toNamed(Routes.SEARCH, id: homeID);
-  }
-}
+class HomeController extends GetxController {}
 
 class HomeWrapper extends StatelessWidget {
   const HomeWrapper({super.key});
