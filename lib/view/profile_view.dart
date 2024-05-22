@@ -147,47 +147,6 @@ class ProfileView extends GetView<ProfileController> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text('경고'),
-                      content: Text('푸드트럭 영업 허가를 받아야 푸드트럭 장사가 가능합니다.'),
-                      actions: <Widget>[
-                        TextButton(
-                          child: Text('아니오'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: Text('예'),
-                          onPressed: () {
-                            Navigator.of(context).pop(); // 팝업 창 닫기
-                            //푸드트럭 수정 페이지 이동 필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Row(
-                children: [
-                  Text(
-                    '푸드트럭 등록',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(Icons.arrow_forward),
-                ],
-              ),
-            ),
-            SizedBox(height: 8.0),
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('경고'),
                       content: Text('푸드트럭 정보 수정 페이지로 이동하시겠습니까?'),
                       actions: <Widget>[
                         TextButton(
@@ -222,39 +181,8 @@ class ProfileView extends GetView<ProfileController> {
               ),
             ),
             SizedBox(height: 8.0),
-            GestureDetector(
-              onTap: () {
-                // 나의 푸드트럭 페이지로 이동하는 기능 추가!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-              },
-              child: Row(
-                children: [
-                  Text(
-                    '나의 푸드트럭',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(Icons.arrow_forward),
-                ],
-              ),
-            ),
-            SizedBox(height: 16.0),
             Divider(height: 1.0, color: Colors.grey),
             SizedBox(height: 16.0),
-            Row(
-              children: [
-                Text(
-                  '설정',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Spacer(),
-                Icon(Icons.arrow_forward),
-              ],
-            ),
           ],
         ),
       ),
