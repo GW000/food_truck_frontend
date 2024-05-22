@@ -13,7 +13,7 @@ class HomeWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      key: Get.nestedKey(homeID),
+      key: Get.nestedKey(homeD),
       initialRoute: Routes.HOME,
       onGenerateRoute: (routeSettings) {
         if (routeSettings.name == Routes.HOME) {

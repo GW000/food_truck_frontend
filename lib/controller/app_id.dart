@@ -1,3 +1,4 @@
-const homeID = 1;
-const profileID = 2;
-const foodtruckID = 3;
+const homeD = 1;
+const profileD = 4;
+const foodtruckD = 3;
+const wishlistD = 2;

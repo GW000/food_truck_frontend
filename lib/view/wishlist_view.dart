@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_truck/controller/wishlist_controller.dart';
+import 'package:get/get.dart';
+import '../style/font_style.dart';
+import '../model/reviewdata.dart';
 
-class WishlistView extends StatelessWidget {
+class WishlistView extends GetView<WishlistController> {
   const WishlistView({Key? key}) : super(key: key);
 
   @override
@@ -12,84 +16,47 @@ class WishlistView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '[찜 목록 개수]',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
+        child: ListView.builder(
+          itemCount: reviews.length,
+          itemBuilder: (context, index) {
+            final foodtruck = reviews[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      "testurl", // foodtruck.foodtruck_imgid,
+                      width: 30,
+                      height: 30,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text(foodtruck.truck_name,
+                      style: CustomTextStyles.bodyBold),
+                  subtitle: Text(
+                      '${foodtruck.distance} · 평점: ${foodtruck.rating}',
+                      style: CustomTextStyles.body),
+                  onTap: () => controller.goDetail(foodtruck.foodtruck_id),
+                ),
               ),
-            ),
-            SizedBox(height: 8.0),
-            Container(
-              height: 1.0,
-              color: Colors.grey,
-            ),
-            SizedBox(height: 8.0),
-            _buildWishListItem(),
-            SizedBox(height: 8.0),
-            _buildWishListItem(),
-            SizedBox(height: 8.0),
-            _buildWishListItem(),
-          ],
+            );
+          },
         ),
       ),
-    );
-  }
-
-  Widget _buildWishListItem() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 50.0,
-              height: 50.0,
-              color: Colors.blue, // 정사각형 모양의 사진 부분
-            ),
-            SizedBox(width: 12.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '트럭명',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '별점',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-                Text(
-                  '결제 방법',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-              ],
-            ),
-            Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                // 삭제 기능 추가
-              },
-              child: Text('삭제'),
-            ),
-          ],
-        ),
-        SizedBox(height: 16.0),
-        Container(
-          height: 1.0,
-          color: Colors.grey,
-        ),
-      ],
     );
   }
 }

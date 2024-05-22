@@ -10,19 +10,19 @@ import '../view/review_view.dart';
 
 class ProfileController extends GetxController {
   void goToSettingPage() {
-    Get.toNamed(Routes.SETTING, id: profileID);
+    Get.toNamed(Routes.SETTING, id: profileD);
   }
 
   void goToReviewPage() {
-    Get.toNamed(Routes.REVIEW, id: profileID);
+    Get.toNamed(Routes.REVIEW, id: profileD);
   }
 
   void goToFoodtrucksettingPage() {
-    Get.toNamed(Routes.FOODTRUCKSETTING, id: profileID);
+    Get.toNamed(Routes.FOODTRUCKSETTING, id: profileD);
   }
 
   void goToProfilesettingPage() {
-    Get.toNamed(Routes.PROFILESETTING, id: profileID);
+    Get.toNamed(Routes.PROFILESETTING, id: profileD);
   }
 }
 
@@ -33,7 +33,7 @@ class ProfileWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Navigator(
       // !important
-      key: Get.nestedKey(profileID),
+      key: Get.nestedKey(profileD),
       initialRoute: Routes.PROFILE,
       onGenerateRoute: (routeSettings) {
         if (routeSettings.name == Routes.PROFILE) {

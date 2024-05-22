@@ -3,6 +3,7 @@ import 'search_view.dart';
 import 'package:get/get.dart';
 import 'package:food_truck/controller/home_controller.dart';
 import '../controller/search_controller.dart';
+import '../style/font_style.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -57,11 +58,7 @@ class HomeView extends GetView<HomeController> {
                           size: 20.0,
                         ),
                       ),
-                      Text(
-                        "주소를 입력하세요",
-                        style:
-                            TextStyle(color: Color(0xff7d7d7d), fontSize: 18),
-                      )
+                      Text("주소를 입력하세요", style: CustomTextStyles.caption)
                     ],
                   ),
                 ),

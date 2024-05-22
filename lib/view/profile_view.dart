@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:food_truck/controller/profile_controller.dart';
+import '../style/font_style.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
@@ -28,20 +29,9 @@ class ProfileView extends GetView<ProfileController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '사용자 이름',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'user@example.com',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.grey,
-                      ),
-                    ),
+                    Text('사용자 이름', style: CustomTextStyles.title),
+                    Text('user@example.com',
+                        style: CustomTextStyles.captionsubtitle),
                   ],
                 ),
               ],
@@ -55,7 +45,7 @@ class ProfileView extends GetView<ProfileController> {
                     controller.goToReviewPage();
                   },
                   icon: Icon(Icons.rate_review),
-                  label: Text('내 리뷰'),
+                  label: Text('내 리뷰', style: CustomTextStyles.body),
                 ),
                 SizedBox(width: 8.0),
                 ElevatedButton.icon(
@@ -63,7 +53,7 @@ class ProfileView extends GetView<ProfileController> {
                     // 알림함으로 이동하는 기능 추가
                   },
                   icon: Icon(Icons.notifications),
-                  label: Text('알림함'),
+                  label: Text('알림함', style: CustomTextStyles.body),
                 ),
               ],
             ),
@@ -74,13 +64,7 @@ class ProfileView extends GetView<ProfileController> {
               onTap: () {},
               child: Row(
                 children: [
-                  Text(
-                    '회원정보수정',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text('회원정보수정', style: CustomTextStyles.bodyBold),
                 ],
               ),
             ),
@@ -114,12 +98,7 @@ class ProfileView extends GetView<ProfileController> {
               },
               child: Row(
                 children: [
-                  Text(
-                    '나의 정보 수정',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
+                  Text('나의 정보 수정', style: CustomTextStyles.body),
                   Spacer(),
                   Icon(Icons.arrow_forward),
                 ],
@@ -130,13 +109,7 @@ class ProfileView extends GetView<ProfileController> {
             SizedBox(height: 16.0),
             Row(
               children: [
-                Text(
-                  '판매자용',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text('판매자용', style: CustomTextStyles.bodyBold),
               ],
             ),
             SizedBox(height: 8.0),
@@ -169,12 +142,7 @@ class ProfileView extends GetView<ProfileController> {
               },
               child: Row(
                 children: [
-                  Text(
-                    '푸드트럭 정보 수정',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
+                  Text('푸드트럭 정보 수정', style: CustomTextStyles.body),
                   Spacer(),
                   Icon(Icons.arrow_forward),
                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../controller/foodtrucksetting_controller.dart';
 import 'package:get/get.dart';
 import '../model/img_test.dart';
+import '../style/font_style.dart';
 
 class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
   const FoodtrucksettingView({Key? key}) : super(key: key);
@@ -39,13 +40,8 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                 ],
               ),
               SizedBox(height: 16.0),
-              Text(
-                '푸드트럭 이름', // 푸드트럭 이름 텍스트
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text('푸드트럭 이름', // 푸드트럭 이름 텍스트
+                  style: CustomTextStyles.title),
               SizedBox(height: 8.0),
               Row(
                 children: [
@@ -65,18 +61,16 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                     onPressed: () {
                       controller.DuplicateCheck();
                     },
-                    child: Text('중복체크'),
+                    child: Text(
+                      '중복체크',
+                      style: CustomTextStyles.body,
+                    ),
                   ),
                 ],
               ),
               SizedBox(height: 16.0),
-              Text(
-                '시간', // 시간 텍스트
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text('시간', // 시간 텍스트
+                  style: CustomTextStyles.title),
               SizedBox(height: 8.0),
               Row(
                 children: [
@@ -91,13 +85,8 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                 ],
               ),
               SizedBox(height: 16.0),
-              Text(
-                '결제 방법', // 결제 방법 텍스트
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text('결제 방법', // 결제 방법 텍스트
+                  style: CustomTextStyles.title),
               SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -105,19 +94,19 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: null), // 현금 체크박스
-                      Text('현금'),
+                      Text('현금', style: CustomTextStyles.body),
                     ],
                   ),
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: null), // 카드 체크박스
-                      Text('카드'),
+                      Text('카드', style: CustomTextStyles.body),
                     ],
                   ),
                   Row(
                     children: [
                       Checkbox(value: false, onChanged: null), // 계좌이체 체크박스
-                      Text('계좌이체'),
+                      Text('계좌이체', style: CustomTextStyles.body),
                     ],
                   ),
                 ],
@@ -129,7 +118,7 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('은행'), // 은행 텍스트
+                      Text('은행', style: CustomTextStyles.body), // 은행 텍스트
                       SizedBox(height: 4.0),
                       Container(
                         width: 120.0,
@@ -153,7 +142,7 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('성명'), // 성명 텍스트
+                      Text('성명', style: CustomTextStyles.body), // 성명 텍스트
                       SizedBox(height: 4.0),
                       Container(
                         width: 120.0,
@@ -176,7 +165,7 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                 ],
               ),
               SizedBox(height: 16.0),
-              Text('계좌번호'), // 계좌번호 텍스트
+              Text('계좌번호', style: CustomTextStyles.body), // 계좌번호 텍스트
               SizedBox(height: 4.0),
               Container(
                 width: 250.0,
@@ -194,13 +183,8 @@ class FoodtrucksettingView extends GetView<FoodtrucksettingController> {
                 ),
               ),
               SizedBox(height: 16.0),
-              Text(
-                '설명', // 설명 텍스트
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text('설명', // 설명 텍스트
+                  style: CustomTextStyles.title),
               SizedBox(height: 8.0),
               Container(
                 width: double.infinity,

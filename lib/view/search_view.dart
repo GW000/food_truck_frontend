@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/search_controller.dart';
+import '../style/font_style.dart';
 
 class SearchView extends GetView<Search_Controller> {
   const SearchView({Key? key}) : super(key: key);
@@ -42,18 +43,14 @@ class SearchView extends GetView<Search_Controller> {
                       //print(search.text);
                       controller.searchAddress(search.text);
                     },
-                    child:
-                        const Text("검색", style: TextStyle(color: Colors.black)),
+                    child: const Text("검색", style: CustomTextStyles.body),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
               if (controller.address.length >= 100) ...[
                 Text('검색 결과가 너무 많습니다. 다시 입력해주세요. \n예) 필문대로 287번길',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
-                        color: Colors.redAccent)),
+                    style: CustomTextStyles.waringcaption),
                 const SizedBox(height: 16),
               ],
               // if (controller.address.isEmpty) ...[
@@ -71,25 +68,12 @@ class SearchView extends GetView<Search_Controller> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(e.roadAddr.trim(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.black)),
-                            Text(
-                              e.jibunAddr.trim(),
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.black),
-                            ),
-                            Text(
-                              e.engAddr.trim(),
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.black),
-                            ),
-                            Text(
-                              '[선택]',
-                              style: TextStyle(
-                                  fontSize: 14, color: Colors.lightBlue),
-                            )
+                                style: CustomTextStyles.subtitle),
+                            Text(e.jibunAddr.trim(),
+                                style: CustomTextStyles.body),
+                            Text(e.engAddr.trim(),
+                                style: CustomTextStyles.body),
+                            Text('[선택]', style: CustomTextStyles.accentcaption),
                           ],
                         ),
                         onTap: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controller/login_controller.dart';
+import '../style/font_style.dart';
 
 class FirstLogin extends StatelessWidget {
   const FirstLogin({super.key});
@@ -23,15 +24,7 @@ class FirstLogin extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '최초 로그인 구분',
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "GamjaFlower",
-                  color: Colors.black, // 텍스트 색상 검은색으로 변경
-                ),
-              ),
+              Text('최초 로그인 구분', style: CustomTextStyles.title),
               TextButton(
                 child: Text('판매자인가요?'),
                 onPressed: () {
