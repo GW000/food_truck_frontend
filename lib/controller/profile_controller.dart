@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_truck/controller/app_id.dart';
 import 'package:food_truck/controller/base_controller.dart';
-import 'package:food_truck/model/userdata.dart';
 import 'package:food_truck/view/foodtrucksetting_view.dart';
 import 'package:get/get.dart';
 import '../controller/app_pages.dart';
@@ -22,7 +21,6 @@ class ProfileController extends GetxController {
   }
 
   void goToFoodtrucksettingPage() {
-    //print((user as UserList).user_name);
     Get.toNamed(Routes.FOODTRUCKSETTING, id: profileD);
   }
 

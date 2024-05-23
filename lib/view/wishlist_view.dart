@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_truck/controller/wishlist_controller.dart';
 import 'package:get/get.dart';
 import '../style/font_style.dart';
-import '../model/reviewdata.dart';
+import '../model/wishlistdata.dart';
 
 class WishlistView extends GetView<WishlistController> {
   const WishlistView({Key? key}) : super(key: key);
@@ -17,9 +17,9 @@ class WishlistView extends GetView<WishlistController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: reviews.length,
+          itemCount: wishlists.length,
           itemBuilder: (context, index) {
-            final foodtruck = reviews[index];
+            final foodtruck = wishlists[index];
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Container(

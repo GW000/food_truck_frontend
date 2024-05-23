@@ -1,57 +1,40 @@
 class ReviewList {
-  int foodtruck_id;
-  int foodtruck_imgid;
-  String truck_name;
-  double distance;
+  DateTime review_create_date;
+  int user_uid;
+  String user_name;
+  String user_img;
+  String review_context;
   double rating;
 
   ReviewList({
-    required this.foodtruck_id,
-    required this.foodtruck_imgid,
-    required this.truck_name,
-    required this.distance,
+    required this.review_create_date,
+    required this.user_uid,
+    required this.user_name,
+    required this.user_img,
+    required this.review_context,
     required this.rating,
   });
   @override
   String toString() {
-    return 'ID: $foodtruck_id, ImgID: $foodtruck_imgid, Name: $truck_name, Distance: $distance, Rating: $rating';
+    return 'Date: $review_create_date, UserId: $user_uid, ImgURL: $user_img, Name: $user_name, Context: $review_context, Rating: $rating';
   }
 }
 
 List<ReviewList> reviews = [
   ReviewList(
-    foodtruck_id: 1,
-    foodtruck_imgid: 1,
-    truck_name: "test1",
-    distance: 1.1,
+    review_create_date: DateTime.now(),
+    user_uid: 1,
+    user_img: "test1_URL",
+    user_name: "test1",
+    review_context: "리뷰내용Text1",
     rating: 1.1,
   ),
   ReviewList(
-    foodtruck_id: 2,
-    foodtruck_imgid: 2,
-    truck_name: "test2",
-    distance: 2.2,
+    review_create_date: DateTime.now(),
+    user_uid: 2,
+    user_img: "test2_URL",
+    user_name: "test2",
+    review_context: "리뷰내용Text2",
     rating: 2.2,
-  ),
-  ReviewList(
-    foodtruck_id: 3,
-    foodtruck_imgid: 3,
-    truck_name: "test3",
-    distance: 3.3,
-    rating: 3.3,
-  ),
-  ReviewList(
-    foodtruck_id: 4,
-    foodtruck_imgid: 4,
-    truck_name: "test4",
-    distance: 4.4,
-    rating: 4.4,
-  ),
-  ReviewList(
-    foodtruck_id: 5,
-    foodtruck_imgid: 5,
-    truck_name: "test5",
-    distance: 5.5,
-    rating: 5.5,
   ),
 ];
