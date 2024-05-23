@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:food_truck/model/userdata.dart';
 import 'package:get/get.dart';
-import '../view/first_login.dart';
-import '../view/base_view.dart';
 import '../controller/app_pages.dart';
 
 class LoginController extends GetxController {
   void goBase() {
-    Get.offAllNamed(Routes.BASE);
+    // USER 아이디를 넘겨주어야함
+    Get.offAllNamed(Routes.BASE, arguments: users[1]);
   }
 
   void buyUser() {
@@ -21,7 +20,5 @@ class LoginController extends GetxController {
 
   void goFirstLogin() {
     Get.offAllNamed(Routes.FIRSTLOGIN);
-
-    //Navigator.of(context).pushReplacementNamed('/firstlogin');
   }
 }

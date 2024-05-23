@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_truck/model/userdata.dart';
 import 'package:get/get.dart';
 import 'package:food_truck/controller/profile_controller.dart';
 import '../style/font_style.dart';
@@ -8,6 +9,7 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    final userdata = controller.user;
     return Scaffold(
       appBar: AppBar(
         title: const Text('ProfileView'),
@@ -22,15 +24,16 @@ class ProfileView extends GetView<ProfileController> {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage:
-                      AssetImage('assets/profile_image.jpg'), //테스트 이미지 삽입
+                  // backgroundImage: AssetImage(
+                  //     "(userdata as UserList).user_img"), //테스트 이미지 삽입
                 ),
                 SizedBox(width: 16.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('사용자 이름', style: CustomTextStyles.title),
-                    Text('user@example.com',
+                    Text((userdata as UserList).user_name,
+                        style: CustomTextStyles.title),
+                    Text((userdata as UserList).user_email,
                         style: CustomTextStyles.captionsubtitle),
                   ],
                 ),
