@@ -8,7 +8,7 @@ class ProfilesettingView extends GetView<ProfilesettingController> {
 
   @override
   Widget build(BuildContext context) {
-    final userdata = controller.user;
+    final user = controller.user;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -26,16 +26,16 @@ class ProfilesettingView extends GetView<ProfilesettingController> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    // backgroundImage: AssetImage(
-                    //     "(userdata as UserList).user_img"), //테스트 이미지 삽입
+                    backgroundImage: NetworkImage(
+                      user['user_img'],
+                    ),
                   ),
                   SizedBox(width: 16.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text((userdata as UserList).user_name,
-                          style: CustomTextStyles.title),
-                      Text((userdata as UserList).user_email,
+                      Text(user['user_name'], style: CustomTextStyles.title),
+                      Text(user['user_email'],
                           style: CustomTextStyles.captionsubtitle),
                     ],
                   ),
@@ -66,6 +66,7 @@ class ProfilesettingView extends GetView<ProfilesettingController> {
                             ElevatedButton(
                               onPressed: () {
                                 // 수정하기 버튼이 클릭되었을 때의 동작
+                                print(user);
                               },
                               child: Text('수정하기'),
                             ),

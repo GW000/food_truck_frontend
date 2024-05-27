@@ -8,9 +8,12 @@ import '../view/setting_view.dart';
 import '../view/profile_view.dart';
 import '../view/profilesetting_view.dart';
 import '../view/review_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileController extends GetxController {
-  final user = Get.find<BaseController>().userdata;
+  final _store = FirebaseFirestore.instance;
+  late String uid;
+  late final user;
 
   void goToSettingPage() {
     Get.toNamed(Routes.SETTING, id: profileD);
@@ -24,8 +27,24 @@ class ProfileController extends GetxController {
     Get.toNamed(Routes.FOODTRUCKSETTING, id: profileD);
   }
 
-  void goToProfilesettingPage() {
-    Get.toNamed(Routes.PROFILESETTING, id: profileD);
+  void goToProfilesettingPage(userdata) {
+    user = userdata;
+    print(user);
+    Get.toNamed(
+      Routes.PROFILESETTING,
+      id: profileD,
+    );
+  }
+
+  getUserData(String uid) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await _store.collection('Users').doc(uid).get();
+      return documentSnapshot.data() as Map<String, dynamic>?;
+    } catch (e) {
+      print('사용자 정보 가져오기 오류 : $e ');
+      return null;
+    }
   }
 }
 

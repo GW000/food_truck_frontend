@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_truck/controller/foodtruck_controller.dart';
 import 'package:food_truck/controller/home_controller.dart';
 import 'package:food_truck/controller/wishlist_controller.dart';
-import 'package:food_truck/model/userdata.dart';
 import 'package:get/get.dart';
 import '../controller/profile_controller.dart';
 

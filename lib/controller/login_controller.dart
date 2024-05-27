@@ -1,11 +1,10 @@
-import 'package:food_truck/model/userdata.dart';
 import 'package:get/get.dart';
 import '../controller/app_pages.dart';
 
 class LoginController extends GetxController {
   void goBase() {
     // USER 아이디를 넘겨주어야함
-    Get.offAllNamed(Routes.BASE, arguments: users[1]);
+    Get.offAllNamed(Routes.BASE);
   }
 
   void buyUser() {
