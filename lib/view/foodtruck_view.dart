@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_truck/style/font_style.dart';
 import 'package:get/get.dart';
 import '../controller/foodtruck_controller.dart';
-import '../model/testdata.dart';
+import '../model/truckdata.dart';
 
 class FoodtruckView extends GetView<FoodtruckController> {
   const FoodtruckView({Key? key}) : super(key: key);
@@ -17,9 +17,10 @@ class FoodtruckView extends GetView<FoodtruckController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: foodtrucks.length,
+          itemCount: trucks.length,
           itemBuilder: (context, index) {
-            final foodtruck = foodtrucks[index];
+            final truckKey = trucks.keys.elementAt(index);
+            final foodtruck = trucks[truckKey]!;
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Container(
@@ -46,12 +47,12 @@ class FoodtruckView extends GetView<FoodtruckController> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  title: Text(foodtruck.truck_name,
+                  title: Text(foodtruck['truck_name'],
                       style: CustomTextStyles.bodyBold),
                   subtitle: Text(
-                      '거리: ${foodtruck.distance} \n 평점: ${foodtruck.rating}',
+                      '내용: ${foodtruck['review_context']}\n 평점: ${foodtruck['Rating']}',
                       style: CustomTextStyles.body),
-                  onTap: () => controller.goDetail(foodtruck.foodtruck_id),
+                  onTap: () => controller.goDetail(truckKey),
                 ),
               ),
             );

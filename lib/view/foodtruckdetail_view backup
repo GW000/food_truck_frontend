@@ -14,7 +14,6 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
     final Size size = MediaQuery.of(context).size;
     final foodtruck = controller.getdata(select);
     final menuKey = menus[select]!;
-    final reviewKey = reviews[select]!;
     return Scaffold(
       appBar: AppBar(
         title: Text('트럭 상세 정보'),
@@ -155,7 +154,7 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
                                           ],
                                         ),
                                         onTap: () {
-                                          print(reviewKey);
+                                          //print(menuMenu);
                                           // 메뉴를 탭했을 때의 동작 추가
                                         },
                                       ),
@@ -248,89 +247,78 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
                       ),
                       // 리뷰 탭 내용
                       ListView.builder(
-                        itemCount: reviewKey.length,
+                        itemCount: reviews.length,
                         itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: reviewKey.keys.map((index) {
-                                  final reviewInfo = reviewKey[index]!;
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0),
-                                    child: Container(
-                                      height: size.height * 0.2,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.3),
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
-                                          ),
-                                        ],
-                                      ),
-                                      child: ListTile(
-                                        leading: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            "testurl", // foodtruck.foodtruck_imgid,
-                                            //width: 30,
-                                            //height: 30,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        trailing: Wrap(
-                                            spacing: 1, // 두 아이콘 간격,
-                                            children: [
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 20,
-                                              ),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 20,
-                                              ),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 20,
-                                              ),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 20,
-                                              ),
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 20,
-                                              ),
-                                            ]),
-                                        title: Text(reviewInfo['user_name'],
-                                            style: CustomTextStyles.bodyBold),
-                                        subtitle: Text(
-                                            '내용: ${reviewInfo['review_context']}\n 평점: ${reviewInfo['Rating']}\n 생성일: ${reviewInfo['review_create_date']}',
-                                            style: CustomTextStyles.body),
-                                        onTap: () => print(reviewKey.length),
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
+                          final reviewKey = reviews.keys.elementAt(index);
+                          final review = reviews[reviewKey]!;
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              height: size.height * 0.2,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
                               ),
-                            ],
+                              child: ListTile(
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    "testurl", // foodtruck.foodtruck_imgid,
+                                    //width: 30,
+                                    //height: 30,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                trailing: Wrap(
+                                    spacing: 1, // 두 아이콘 간격,
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                    ]),
+
+                                title: Text(review['user_name'],
+                                    style: CustomTextStyles.bodyBold),
+                                subtitle: Text(
+                                    '내용: ${review['review_context']}\n 평점: ${review['Rating']}\n 생성일: ${review['review_create_date']}',
+                                    style: CustomTextStyles.body),
+                                //onTap: () => controller.goDetail(truckKey),
+                              ),
+                            ),
                           );
                         },
-                      ),
+                      )
                     ],
                   ),
                 ),
