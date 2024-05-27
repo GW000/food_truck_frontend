@@ -15,6 +15,10 @@
 ### $ flutter pub add mvc_pattern
 - MVC 디자인 패턴
 
+### $ flutter pub add firebase_core
+
+### $ flutter pub add cloud_firestore
+
 
 
 ### uses-material-design: true 

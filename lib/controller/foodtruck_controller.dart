@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'app_id.dart';
 import 'app_pages.dart';
+import '../model/foodtruck_model.dart';
 
 class FoodtruckController extends GetxController {
-  void goDetail(seletIndex) {
-    //print(seletIndex);
-    Get.toNamed(Routes.FOODTRUCKDETAIL, arguments: seletIndex);
+  final FoodTruckModel _foodTruckModel = FoodTruckModel();
+  void goDetail(foodtruck) {
+    //print(foodtruck);
+    Get.toNamed(Routes.FOODTRUCKDETAIL, arguments: foodtruck);
   }
 
   void addFoodtruckList() {
@@ -19,8 +21,8 @@ class FoodtruckController extends GetxController {
     // final name = "test"
     // foodtrucks.add(FoodtruckList(foodtruck_id: id, foodtruck_img_id: imgid, name:name, distance: distance, rating: rating));
   }
-  void getFoodtruckList() {
-    // 데이터 베이스에 저장된 모든 푸드트럭 리스트를 정리하여 표시필요
+  getFoodTruckData() async {
+    return _foodTruckModel.getFoodTruckData();
   }
 }
 

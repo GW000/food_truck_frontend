@@ -9,7 +9,7 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    final userdata = controller.user;
+    final userdata = users[0];
     return Scaffold(
       appBar: AppBar(
         title: const Text('ProfileView'),

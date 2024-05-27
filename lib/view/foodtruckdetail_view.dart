@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_truck/model/truck_menudata.dart';
 import 'package:food_truck/model/truck_reviewdata.dart';
 import '../controller/foodtruckdetail_controller.dart';
 import 'package:get/get.dart';
@@ -10,10 +9,10 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
 
   @override
   Widget build(BuildContext context) {
-    final String select = Get.arguments;
+    final foodtruck = Get.arguments;
+    final String select = foodtruck['foodtruck_id'];
     final Size size = MediaQuery.of(context).size;
-    final foodtruck = controller.getdata(select);
-    final menuKey = menus[select]!;
+    //final menuKey = menus[select]!;
     final reviewKey = reviews[select]!;
     return Scaffold(
       appBar: AppBar(
@@ -47,7 +46,7 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
           SizedBox(height: 10),
           // 위치 및 거리 정보 추가
           Text(
-            "거리 : ${foodtruck['truck_location']}km",
+            "거리 : km",
             style: CustomTextStyles.body,
           ),
           SizedBox(height: 20),
@@ -60,17 +59,16 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
               ),
               SizedBox(width: 10),
               Text(
-                foodtruck['truck_payment'],
+                'truck_payment 추가 해야함',
                 style: CustomTextStyles.body,
               ),
             ],
           ),
           SizedBox(height: 20),
-          // 판매 시간 추가
           Row(
             children: [
               Text(
-                "판매 시간:",
+                "운영 시간:",
                 style: CustomTextStyles.subtitle,
               ),
               SizedBox(width: 10),
@@ -102,77 +100,88 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
                   height: 400,
                   child: TabBarView(
                     children: [
-                      ListView.builder(
-                        itemCount: menuKey.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: menuKey.keys.map((index) {
-                                  final menuInfo = menuKey[index]!;
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0),
-                                    child: Container(
-                                      height: size.height * 0.2,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.3),
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
+                      FutureBuilder(
+                          future: (controller.getFoodTruckMenuData(select)),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData == false) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Error: ${snapshot.error}',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              );
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, index) {
+                                    final menu = snapshot.data[index];
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: size.height * 0.2,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.3),
+                                                spreadRadius: 1,
+                                                blurRadius: 5,
+                                                offset: Offset(0,
+                                                    3), // changes position of shadow
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                      child: ListTile(
-                                        leading: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            menuInfo['menu_img'] ??
-                                                '', // 이미지 URL
-                                            fit: BoxFit.cover,
+                                          child: ListTile(
+                                            leading: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                menu['menu_img'], // 이미지 URL
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            title: Text(menu['menu_name'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    '설명: ${menu['menu_description']}'),
+                                                Text(
+                                                    '가격: ${menu['menu_price']}'),
+                                              ],
+                                            ),
+                                            onTap: () {},
                                           ),
                                         ),
-                                        title: Text(menuInfo['menu_name'] ?? '',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        subtitle: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                '설명: ${menuInfo['menu_description'] ?? ''}'),
-                                            Text(
-                                                '가격: ${menuInfo['menu_price'] ?? ''}'),
-                                          ],
-                                        ),
-                                        onTap: () {
-                                          print(reviewKey);
-                                          // 메뉴를 탭했을 때의 동작 추가
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              );
+                            }
+                          }),
+
                       // 정보 탭 내용
                       ListView(
                         padding: EdgeInsets.all(16.0),
                         children: [
                           Text(
-                            '트럭 상호명${foodtruck['truck_name']}',
+                            '${foodtruck['truck_name']}',
                             style: CustomTextStyles.title,
                           ),
                           SizedBox(height: 10),
@@ -185,26 +194,7 @@ class FoodtruckdetailView extends GetView<FoodtruckdetailController> {
                             foodtruck['truck_schedule'],
                             style: CustomTextStyles.body,
                           ),
-                          SizedBox(height: 20),
-                          Text(
-                            '준비 시간:',
-                            style: CustomTextStyles.subtitle,
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            '30분',
-                            style: CustomTextStyles.body,
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            '휴무일:${foodtruck['truck_schedule']}',
-                            style: CustomTextStyles.subtitle,
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            '영업일:${foodtruck['truck_schedule']}',
-                            style: CustomTextStyles.body,
-                          ),
+
                           // 전화번호
                           SizedBox(height: 20),
                           Text(

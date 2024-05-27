@@ -1,11 +1,12 @@
 import 'package:food_truck/controller/app_id.dart';
 import 'package:get/get.dart';
-import '../model/truckdata.dart';
 import 'package:flutter/material.dart';
+import '../model/menu_model.dart';
 
 class FoodtruckdetailController extends GetxController {
-  getdata(index) {
-    final truck = trucks[index]!;
-    return truck;
+  final MenuModel _menuModel = MenuModel();
+
+  getFoodTruckMenuData(String foodtruckId) async {
+    return await _menuModel.getFoodTruckMenuData(foodtruckId);
   }
 }

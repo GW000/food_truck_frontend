@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_truck/controller/profilesetting_controller.dart';
 import 'package:get/get.dart';
 import '../style/font_style.dart';
-import '../model/userdata.dart';
 
 class ProfilesettingView extends GetView<ProfilesettingController> {
   const ProfilesettingView({Key? key}) : super(key: key);
