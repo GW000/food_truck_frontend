@@ -17,15 +17,14 @@ class FoodTruckModel {
 
   // 트럭 주소, 위치 정보는 제외함. 지도 기능 다 구현이 되면 추가할 것임.
   Future<String> createFoodTruck(
-    String truckName,
-    String truckDescription,
-    String truckSchedule,
-    String truckPhone,
-    Map<String, dynamic> paymentOptions,
-    /*File? file,*/
-    String truckTag,
-    /*String uid*/
-  ) async {
+      String truckName,
+      String truckDescription,
+      String truckSchedule,
+      String truckPhone,
+      Map<String, dynamic> paymentOptions,
+      /*File? file,*/
+      String truckTag,
+      String uid) async {
     String timenow = DateFormat("yyyy년 MM월 dd일").format(DateTime.now());
     DocumentReference docref = _store.collection('FoodTruck').doc();
 

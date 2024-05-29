@@ -53,10 +53,8 @@ class FoodtruckView extends GetView<FoodtruckController> {
                         child: ListTile(
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              "testurl", // foodtruck.foodtruck_imgid,
-                              //width: 30,
-                              //height: 30,
+                            child: Image(
+                              image: NetworkImage('foodtruck[' ']'),
                               fit: BoxFit.cover,
                             ),
                           ),

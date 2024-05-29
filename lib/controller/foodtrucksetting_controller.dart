@@ -7,7 +7,7 @@ import 'app_id.dart';
 
 class FoodtrucksettingController extends GetxController {
   final _picker = ImagePicker();
-  //final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FoodTruckModel _foodTruckModel = FoodTruckModel();
   void goBack() {
     Get.back(id: profileD);
@@ -21,15 +21,15 @@ class FoodtrucksettingController extends GetxController {
       Map<String, dynamic> paymentOptions,
       /*File file,*/
       String truckTag) {
-    //User user = _auth.currentUser!;
+    User user = _auth.currentUser!;
     return _foodTruckModel.createFoodTruck(
-      truckName,
-      truckDescription,
-      truckSchedule,
-      truckPhone,
-      paymentOptions,
-      /*file,*/ truckTag, /*user.uid*/
-    );
+        truckName,
+        truckDescription,
+        truckSchedule,
+        truckPhone,
+        paymentOptions,
+        /*file,*/ truckTag,
+        user.uid);
   }
 
   getFoodTruckImgGaller() async {
